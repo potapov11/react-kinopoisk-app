@@ -3,7 +3,7 @@ function Card(props) {
 
 	const { film } = props;
 
-	console.log(film.genres);
+	console.log(film.rating);
 
 	return (
 		<div className="movie">
@@ -14,9 +14,12 @@ function Card(props) {
 			</div>
 			<div className="movie__info">
 				<div className="movie__title">{film.nameRu}</div>
-				{film.genres.map((genre) => {
-					return <div className="movie__category">{genre.genre}</div>;
-				})}
+				<div className="movies__genres">
+					{film.genres.map((genre) => {
+						return <div className="movie__category">{genre.genre}</div>;
+					})}
+				</div>
+				{Number(film.rating) >= 7 ? <div class="movie__average movie__average--green">{film.rating}</div> : <div class="movie__average movie__average--orange">{film.rating}</div>}
 			</div>
 		</div>
 	);
