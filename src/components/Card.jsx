@@ -1,12 +1,12 @@
 function Card(props) {
-	console.log(props);
+	// console.log(props);
 
-	const { film } = props;
+	const { film, showModal } = props;
 
-	console.log(film.rating);
+	// console.log(film.rating);
 
 	return (
-		<div className="movie">
+		<div className="movie" onClick={() => showModal(film.filmId)}>
 			<div className="movie__cover-inner">
 				{/* <img className="movie__cover" src="${movie.posterUrlPreview}" alt="${movie.nameRu}" /> */}
 				<img className="movie__cover" src={film.posterUrlPreview} alt={film.nameRu} />

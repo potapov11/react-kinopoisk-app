@@ -1,7 +1,7 @@
 import Card from './Card';
 
 function Movies(props) {
-	const { movieArr } = props;
+	const { movieArr, showModal, setMovieModalInfo } = props;
 
 	if (!movieArr || !movieArr.films) {
 		return null; // Можно вернуть заглушку или другое сообщение, если данные еще не загружены
@@ -18,7 +18,7 @@ function Movies(props) {
 		<div className="movies">
 			{arrFilms.length > 0 &&
 				arrFilms.map((film) => {
-					return <Card key={film.filmId} film={film} />;
+					return <Card key={film.filmId} film={film} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />;
 				})}
 		</div>
 	);

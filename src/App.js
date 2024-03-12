@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Movies from './components/Movies';
 import Header from './components/Header';
 import Preloader from './components/Preloader';
+import FilmModal from './components/FilmModal';
 
 import './App.css';
 
@@ -13,6 +14,9 @@ const API_Movie_details = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/';
 function App() {
 	const [movieArr, setMovieArr] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [movieModalInfo, setMovieModalInfo] = useState([]);
+	// const [modalOpenState, setModalOpenState] = useState(true);
+	const [modalOpen, setModalOpen] = useState(false);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -47,13 +51,36 @@ function App() {
 			});
 	}
 
+	function showModal(filmInfo) {
+		console.log(filmInfo, '...filmInfo');
+
+		fetch(API_Movie_details + filmInfo, {
+			headers: {
+				'Content-Type': 'application.json',
+				'X-API-KEY': API_Key,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setMovieModalInfo(data);
+				console.log(movieModalInfo);
+				document.body.style.overflow = 'hidden';
+				setModalOpen(true); // Закрываем модальное окно
+			});
+	}
+
+	function closeModal() {
+		setModalOpen(false); // Закрываем модальное окно
+	}
+
 	return (
 		<div className="App">
 			<div className="container">
+				{modalOpen && <FilmModal movieModalInfo={movieModalInfo} closeModal={closeModal} />}
 				{isLoading ? (
 					<div className="content">
 						<Header searchFunc={SearchMovie} />
-						<Movies movieArr={movieArr} />
+						<Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
 					</div>
 				) : (
 					<div className="loader">
