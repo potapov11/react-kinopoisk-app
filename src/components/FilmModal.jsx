@@ -15,9 +15,7 @@ function FilmModal(props) {
 			{infoFilm && (
 				<div className="modal__overlay">
 					<div className="modal__card">
-						<span className="modal__button-close-icon" onClick={closeModal}>
-							X
-						</span>
+						<span className="modal__button-close-icon" onClick={closeModal}></span>
 						<img className="modal__movie-backdrop" src={infoFilm.posterUrl} alt="" />
 						<h2 className="modal__title">
 							<span className="modal__movie-title">Название {infoFilm.nameRu}</span>
