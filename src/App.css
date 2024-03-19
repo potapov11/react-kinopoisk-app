@@ -367,15 +367,15 @@ div {
 	top: 0;
 	left: 0;
 	content: '';
-	transition: width 3s; /* добавляем переход для свойства width с длительностью 3 секунды */
+	transition: transform 4s ease; /* добавляем переход для свойства width с длительностью 3 секунды */
 	width: 100%; /* начальная ширина элемента */
 	height: 100%;
 	display: block;
 	background-color: #000;
 }
 
-.preloader-width-min::after {
-	width: 1%;
+.preloader-text.preloader-width-min::after {
+	transform: translateX(101%);
 }
 
 .preloader-1 .line {

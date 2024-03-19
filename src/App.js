@@ -32,7 +32,7 @@ function App() {
 					setMovieArr(data);
 					setIsLoading(true);
 				});
-		}, 3000);
+		}, 4000);
 	}, []);
 
 	useEffect(() => {
@@ -71,8 +71,6 @@ function App() {
 	}
 
 	function showModal(filmInfo) {
-		console.log(filmInfo, '...filmInfo');
-
 		fetch(API_Movie_details + filmInfo, {
 			headers: {
 				'Content-Type': 'application.json',
