@@ -299,6 +299,15 @@ ul li {
 	justify-content: center;
 }
 
+.pagination__points {
+	cursor: pointer;
+}
+
+.checked-item {
+	transform: scale(1.2);
+	border: 2px solid white;
+}
+
 .pagination__item {
 	width: 20px;
 	height: 20px;
@@ -339,6 +348,34 @@ div {
 	font-family: 'Arial', sans-serif;
 	font-size: 10px;
 	letter-spacing: 2px;
+}
+
+.preloader-wrapper {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.preloader-text {
+	position: relative;
+	font-size: 130px;
+}
+
+.preloader-text::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: '';
+	transition: width 3s; /* добавляем переход для свойства width с длительностью 3 секунды */
+	width: 100%; /* начальная ширина элемента */
+	height: 100%;
+	display: block;
+	background-color: #000;
+}
+
+.preloader-width-min::after {
+	width: 1%;
 }
 
 .preloader-1 .line {
