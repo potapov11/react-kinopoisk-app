@@ -21,6 +21,7 @@ function Card(props) {
           })}
         </div>
         {film.rating !== null &&
+          film.rating !== "null" &&
           !film.rating.includes("%") &&
           (Number(film.rating) >= 7 ? <div className="movie__average movie__average--green">{film.rating}</div> : <div className="movie__average movie__average--orange">{film.rating}</div>)}
       </div>

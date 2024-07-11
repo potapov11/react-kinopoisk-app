@@ -8,6 +8,7 @@ import Pagination from "./components/Pagination";
 import "./App.css";
 
 const API_Key = "72268c3c-1c09-47f4-a0ae-f246d567a119";
+const API_NEWS = "https://kinopoiskapiunofficial.tech/api/v1/media_posts?page=1";
 const API_url_popular = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
 const API_url_search = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 const API_Movie_details = "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
@@ -16,7 +17,6 @@ function App() {
   const [movieArr, setMovieArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [movieModalInfo, setMovieModalInfo] = useState([]);
-  // const [modalOpenState, setModalOpenState] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -32,6 +32,15 @@ function App() {
           setMovieArr(data);
           setIsLoading(true);
         });
+
+      fetch(API_NEWS, {
+        headers: {
+          "Content-Type": "application.json",
+          "X-API-KEY": API_Key,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data.items.slice(0, 5)));
     }, 4000);
   }, []);
 
