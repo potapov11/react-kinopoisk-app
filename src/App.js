@@ -20,28 +20,37 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(API_url_popular, {
-        headers: {
-          "Content-Type": "application.json",
-          "X-API-KEY": API_Key,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setMovieArr(data);
-          setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const popularResponse = await fetch(API_url_popular, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_Key,
+          },
         });
+        const popularData = await popularResponse.json();
 
-      fetch(API_NEWS, {
-        headers: {
-          "Content-Type": "application.json",
-          "X-API-KEY": API_Key,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data.items.slice(0, 5)));
+        const newsResponse = await fetch(API_NEWS, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_Key,
+          },
+        });
+        const newsData = await newsResponse.json();
+
+        setMovieArr(popularData);
+        setIsLoading(true);
+        console.log(newsData.items.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      fetchData();
     }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
