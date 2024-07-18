@@ -8,34 +8,49 @@ import Pagination from "./components/Pagination";
 import "./App.css";
 
 const API_Key = "72268c3c-1c09-47f4-a0ae-f246d567a119";
-const API_url_popular =
-  "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
-const API_url_search =
-  "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
+const API_NEWS = "https://kinopoiskapiunofficial.tech/api/v1/media_posts?page=1";
+const API_url_popular = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
+const API_url_search = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 const API_Movie_details = "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
 
 function App() {
   const [movieArr, setMovieArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [movieModalInfo, setMovieModalInfo] = useState([]);
-  // const [modalOpenState, setModalOpenState] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(API_url_popular, {
-        headers: {
-          "Content-Type": "application.json",
-          "X-API-KEY": API_Key,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setMovieArr(data);
-          setIsLoading(true);
-          console.log(movieArr);
+    const fetchData = async () => {
+      try {
+        const popularResponse = await fetch(API_url_popular, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_Key,
+          },
         });
-    }, 2000);
+        const popularData = await popularResponse.json();
+
+        const newsResponse = await fetch(API_NEWS, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-KEY": API_Key,
+          },
+        });
+        const newsData = await newsResponse.json();
+
+        setMovieArr(popularData);
+        setIsLoading(true);
+        console.log(newsData.items.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -70,13 +85,10 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setMovieArr(data);
-        console.log(movieArr);
       });
   }
 
   function showModal(filmInfo) {
-    console.log(filmInfo, "...filmInfo");
-
     fetch(API_Movie_details + filmInfo, {
       headers: {
         "Content-Type": "application.json",
@@ -99,20 +111,15 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {modalOpen && (
-          <FilmModal movieModalInfo={movieModalInfo} closeModal={closeModal} />
-        )}
+        {modalOpen && <FilmModal movieModalInfo={movieModalInfo} closeModal={closeModal} />}
         {isLoading ? (
           <>
             <div className="content">
               <Header searchFunc={SearchMovie} />
-              <Movies
-                movieArr={movieArr}
-                showModal={showModal}
-                setMovieModalInfo={setMovieModalInfo}
-              />
+              <Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
             </div>
-            <Pagination movieArr={movieArr} getPageMovie={getPageMovie} />
+
+            {/* /*<Pagination movieArr={movieArr} getPageMovie={getPageMovie} />*/}
           </>
         ) : (
           <div className="loader">

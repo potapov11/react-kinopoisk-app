@@ -1,41 +1,45 @@
+import React, { useState, useEffect } from 'react';
+
 function Pagination(props) {
-  const { movieArr } = props;
-  const { getPageMovie } = props;
+	const { movieArr, getPageMovie } = props;
+	const pageCount = props.movieArr.pagesCount;
 
-  console.log(movieArr.pagesCount);
-  console.log(typeof movieArr.pagesCount);
+	const [paginationArray, setPaginationArray] = useState([]);
+	const [currentPageCount, setCurrentPageCount] = useState(1);
+	// const [styleLastItem, setStyleLastItem] = useState(false);
 
-  let paginationArr = [];
+	function setNewStyle(index) {
+		setCurrentPageCount(index);
+		// alert(num);
+	}
 
-  for (let i = 1; i <= movieArr.pagesCount; i++) {
-    paginationArr.push(
-      <li onClick={() => getPageMovie(i)} className="pagination__item">
-        {i}
-      </li>
-    );
-  }
+	useEffect(() => {
+		let newPaginationArray = [];
+		for (let i = 1; i <= pageCount; i++) {
+			newPaginationArray.push(
+				<li
+					className="pagination__item"
+					onClick={() => {
+						setNewStyle(i);
+						getPageMovie(i);
+					}}>
+					{i}
+				</li>,
+			);
+		}
 
-  return paginationArr.length > 10 ? (
-    <div className="pagination">
-      <div className="pagination__nav"></div>
-      <div className="pagination__nav">Назад</div>
-      <ul className="pagination__list">
-        {
-          (paginationArr = paginationArr
-            .slice(0, 5)
-            .concat([<div>.....</div>])
-            .concat(paginationArr[paginationArr.length - 1]))
-        }
-      </ul>
-      <div className="pagination__nav">Вперед</div>
-    </div>
-  ) : (
-    <div className="pagination">
-      <div className="pagination__nav">Вперед</div>
-      <ul className="pagination__list">{paginationArr}</ul>
-      <div className="pagination__nav">Назад</div>
-    </div>
-  );
+		newPaginationArray[currentPageCount - 1] = <li className="pagination__item checked-item">{currentPageCount}</li>;
+
+		setPaginationArray(newPaginationArray);
+	}, [pageCount, currentPageCount]);
+
+	return (
+		<ul className="pagination__list">
+			<div className="pagination__nav">Назад</div>
+			{paginationArray}
+			<div className="pagination__nav">Вперед</div>
+		</ul>
+	);
 }
 
 export default Pagination;

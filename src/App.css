@@ -12,6 +12,7 @@ body {
 
 form {
   position: relative;
+  width: 330px;
 }
 
 .container {
@@ -34,6 +35,7 @@ form {
 }
 
 .header__search {
+  width: 100%;
   padding: 8px;
   border: 2px solid #1a191f;
   border-radius: 5px;
@@ -168,8 +170,9 @@ form {
 }
 
 .modal__card {
+  position: relative;
   max-width: 600px;
-  padding: 16px;
+  padding: 20px 16px 40px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
   background-color: #1a191f;
   color: #ffffff;
@@ -178,8 +181,45 @@ form {
 }
 
 .modal__movie-backdrop {
-  width: 200px;
+  width: 280px;
   margin: 0 auto;
+}
+
+.modal__movie-overview-show {
+  position: relative;
+  display: block;
+  margin-bottom: 32px;
+  position: relative;
+  display: block;
+  color: #ffd80e;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+
+.modal__movie-overview-show::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 50%;
+  transform: translate(50%);
+  width: 30px;
+  height: 30px;
+  background-image: url("../src/assets/img/arrow-down-svgrepo-com.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.modal__movie-site,
+.modal__genres {
+  font-size: 14px;
+}
+
+.modal__movie-title {
+  margin-bottom: 5px;
+}
+
+.modal__title {
+  margin-top: 10px;
 }
 
 .modal__movie-info {
@@ -225,13 +265,28 @@ ul li {
   font-size: 14px;
 }
 
+.modal__movie-overview:hover {
+  .modal__movie-overview-show::after {
+    transform: translate(50%) scale(1.2);
+  }
+}
+
 .modal__button-close-icon {
   color: #fff;
   position: absolute;
   right: 15px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   font-size: 25px;
+  background-image: url("../src/assets/img/close.svg");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+
+.modal__button-close-icon:hover {
+  transform: rotate(90deg);
 }
 
 /*Pagination*/
@@ -244,6 +299,15 @@ ul li {
 .pagination__list {
   display: flex;
   justify-content: center;
+}
+
+.pagination__points {
+  cursor: pointer;
+}
+
+.checked-item {
+  transform: scale(1.2);
+  border: 2px solid white;
 }
 
 .pagination__item {
@@ -286,6 +350,34 @@ div {
   font-family: "Arial", sans-serif;
   font-size: 10px;
   letter-spacing: 2px;
+}
+
+.preloader-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-text {
+  position: relative;
+  font-size: 130px;
+}
+
+.preloader-text::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  transition: transform 4s ease; /* добавляем переход для свойства width с длительностью 3 секунды */
+  width: 100%; /* начальная ширина элемента */
+  height: 100%;
+  display: block;
+  background-color: #000;
+}
+
+.preloader-text.preloader-width-min::after {
+  transform: translateX(101%);
 }
 
 .preloader-1 .line {
@@ -367,5 +459,37 @@ div {
   100% {
     opacity: 1;
     height: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  form {
+    width: 100%;
+
+    .header__search {
+      width: 80%;
+      height: 60px;
+    }
+  }
+
+  .header {
+    height: 155px;
+  }
+
+  .header__content {
+    height: 100%;
+    justify-content: space-around;
+  }
+
+  .preloader-text {
+    transform: rotate(90deg);
+  }
+
+  .preloader-wrapper {
+    overflow: hidden;
+  }
+
+  .header__content {
+    flex-direction: column;
   }
 }
