@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import useLocalStorage from '../hooks/useSessionStorage.jsx';
 import { API_Key, API_NEWS, API_url_popular, API_url_search, API_Movie_details } from '../constants.js';
 
 export const MovieContext = createContext();
@@ -8,6 +9,15 @@ export const MovieDataContext = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [movieModalInfo, setMovieModalInfo] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
+
+	const [localState, setLocalState] = useLocalStorage('promo');
+
+	// useEffect(() => {
+	// 	setTimeout(() => {
+
+	// }, []);
+
+	console.log(localState);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -30,8 +40,6 @@ export const MovieDataContext = ({ children }) => {
 
 				setMovieArr(popularData);
 
-				console.log(movieArr);
-
 				setIsLoading(true);
 				console.log(newsData.items.slice(0, 5));
 			} catch (error) {
@@ -39,11 +47,15 @@ export const MovieDataContext = ({ children }) => {
 			}
 		};
 
-		const timer = setTimeout(() => {
+		if (localState === 'true') {
 			fetchData();
-		}, 4000);
-
-		return () => clearTimeout(timer);
+		} else {
+			const timer = setTimeout(() => {
+				fetchData();
+				setLocalState('true');
+			}, 4000);
+			return () => clearTimeout(timer);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -113,6 +125,7 @@ export const MovieDataContext = ({ children }) => {
 				setMovieModalInfo,
 				setModalOpen,
 				searchMovie,
+				localState,
 			}}>
 			{children}
 		</MovieContext.Provider>
