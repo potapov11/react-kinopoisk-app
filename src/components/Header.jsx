@@ -1,7 +1,19 @@
 function Header(props) {
-	console.log(props);
-
 	const { searchFunc } = props;
+	const DEBOUNCE_TIMER = 200;
+
+	const debounce = (callback, timer) => {
+		console.log('debounce');
+		let timeoutId;
+		return (...args) => {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => callback.apply(this, args), timer);
+		};
+	};
+
+	const searchDebounceMovie = debounce((e) => {
+		searchFunc(e.target.value);
+	}, DEBOUNCE_TIMER);
 
 	return (
 		<header className="header container">
@@ -10,7 +22,7 @@ function Header(props) {
 					MovieApp
 				</a>
 				<form>
-					<input onChange={(e) => searchFunc(e.target.value)} className="header__search" type="text" placeholder="Найти фильм" />
+					<input onChange={(e) => searchDebounceMovie(e)} className="header__search" type="text" placeholder="Найти фильм" />
 					<span className="header__clear"></span>
 				</form>
 			</div>
