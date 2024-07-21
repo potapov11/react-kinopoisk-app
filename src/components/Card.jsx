@@ -10,8 +10,12 @@ function Card(props) {
 			<div className="movie__info">
 				<div className="movie__title">{film.nameRu}</div>
 				<div className="movies__genres">
-					{film.genres.map((genre) => {
-						return <div className="movie__category">{genre.genre}</div>;
+					{film.genres.map((genre, i) => {
+						return (
+							<div key={i} className="movie__category">
+								{genre.genre}
+							</div>
+						);
 					})}
 				</div>
 				{film.rating !== null &&
