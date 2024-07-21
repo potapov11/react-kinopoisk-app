@@ -1,134 +1,36 @@
-import React, { useState, useEffect } from "react";
-import Movies from "./components/Movies";
-import Header from "./components/Header";
-import Preloader from "./components/Preloader";
-import FilmModal from "./components/FilmModal";
-import Pagination from "./components/Pagination";
-
-import "./App.css";
-
-const API_Key = "72268c3c-1c09-47f4-a0ae-f246d567a119";
-const API_NEWS = "https://kinopoiskapiunofficial.tech/api/v1/media_posts?page=1";
-const API_url_popular = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
-const API_url_search = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
-const API_Movie_details = "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
+import React, { useContext } from 'react';
+import Movies from './components/Movies';
+import Header from './components/Header';
+import Preloader from './components/Preloader';
+import FilmModal from './components/FilmModal';
+// import Pagination from './components/Pagination';
+import { MovieContext } from './components/context';
+import './App.css';
 
 function App() {
-  const [movieArr, setMovieArr] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [movieModalInfo, setMovieModalInfo] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
+	const { movieArr, isLoading, movieModalInfo, modalOpen, closeModal, searchMovie, showModal, setMovieModalInfo } = useContext(MovieContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const popularResponse = await fetch(API_url_popular, {
-          headers: {
-            "Content-Type": "application/json",
-            "X-API-KEY": API_Key,
-          },
-        });
-        const popularData = await popularResponse.json();
+	return (
+		<div className="App">
+			<div className="container">
+				{modalOpen && <FilmModal movieModalInfo={movieModalInfo} closeModal={closeModal} />}
+				{isLoading ? (
+					<>
+						<div className="content">
+							<Header searchFunc={searchMovie} />
+							<Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
+						</div>
 
-        const newsResponse = await fetch(API_NEWS, {
-          headers: {
-            "Content-Type": "application/json",
-            "X-API-KEY": API_Key,
-          },
-        });
-        const newsData = await newsResponse.json();
-
-        setMovieArr(popularData);
-        setIsLoading(true);
-        console.log(newsData.items.slice(0, 5));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    const timer = setTimeout(() => {
-      fetchData();
-    }, 4000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".modal__card") && !e.target.closest(".movie")) {
-        setModalOpen(false);
-        document.body.style.overflow = "auto";
-      }
-    });
-  }, [modalOpen]);
-
-  function getPageMovie(num) {
-    const API_url_popular_page = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${num}`;
-
-    fetch(API_url_popular_page, {
-      headers: {
-        "Content-Type": "application.json",
-        "X-API-KEY": API_Key,
-      },
-    }).then((response) => response.json().then((data) => setMovieArr(data)));
-  }
-
-  function SearchMovie(value) {
-    const apiSearcUrl = `${API_url_search}${value}`;
-
-    fetch(value ? apiSearcUrl : API_url_popular, {
-      headers: {
-        "Content-Type": "application.json",
-        "X-API-KEY": API_Key,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMovieArr(data);
-      });
-  }
-
-  function showModal(filmInfo) {
-    fetch(API_Movie_details + filmInfo, {
-      headers: {
-        "Content-Type": "application.json",
-        "X-API-KEY": API_Key,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMovieModalInfo(data);
-        document.body.style.overflow = "hidden";
-        setModalOpen(true); // Закрываем модальное окно
-      });
-  }
-
-  function closeModal() {
-    setModalOpen(false); // Закрываем модальное окно
-    document.body.style.overflow = "auto";
-  }
-
-  return (
-    <div className="App">
-      <div className="container">
-        {modalOpen && <FilmModal movieModalInfo={movieModalInfo} closeModal={closeModal} />}
-        {isLoading ? (
-          <>
-            <div className="content">
-              <Header searchFunc={SearchMovie} />
-              <Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
-            </div>
-
-            {/* /*<Pagination movieArr={movieArr} getPageMovie={getPageMovie} />*/}
-          </>
-        ) : (
-          <div className="loader">
-            <Preloader />
-          </div>
-        )}
-      </div>
-    </div>
-  );
+						{/* /*<Pagination movieArr={movieArr} getPageMovie={getPageMovie} />*/}
+					</>
+				) : (
+					<div className="loader">
+						<Preloader />
+					</div>
+				)}
+			</div>
+		</div>
+	);
 }
 
 export default App;
