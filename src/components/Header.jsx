@@ -16,7 +16,7 @@ function Header(props) {
 	}, DEBOUNCE_TIMER);
 
 	return (
-		<header className="header container">
+		<header style={{ marginBottom: '200px' }} className="header container">
 			<div className="header__content">
 				<a className="header__logo" href="index.html">
 					MovieApp

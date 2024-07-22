@@ -15,7 +15,7 @@ function Movies(props) {
 	// console.log(arrFilms);
 
 	return (
-		<div className="movies">
+		<div style={{ marginTop: '200px' }} className="movies">
 			{arrFilms.length > 0 &&
 				arrFilms.map((film) => {
 					return <Card key={film.filmId} film={film} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />;

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import useLocalStorage from '../hooks/useSessionStorage.jsx';
+import useSessionStorage from '../hooks/useSessionStorage.jsx';
 import { API_Key, API_NEWS, API_url_popular, API_url_search, API_Movie_details } from '../constants.js';
 
 export const MovieContext = createContext();
@@ -9,8 +9,9 @@ export const MovieDataContext = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [movieModalInfo, setMovieModalInfo] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [sliderArray, setSliderArray] = useState([]);
 
-	const [localState, setLocalState] = useLocalStorage('promo');
+	const [localState, setLocalState] = useSessionStorage('promo');
 
 	// useEffect(() => {
 	// 	setTimeout(() => {
@@ -42,6 +43,7 @@ export const MovieDataContext = ({ children }) => {
 
 				setIsLoading(true);
 				console.log(newsData.items.slice(0, 5));
+				setSliderArray(newsData.items.slice(0, 5));
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
@@ -125,6 +127,7 @@ export const MovieDataContext = ({ children }) => {
 				setMovieModalInfo,
 				setModalOpen,
 				searchMovie,
+				sliderArray,
 				localState,
 			}}>
 			{children}

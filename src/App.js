@@ -5,6 +5,7 @@ import Preloader from './components/Preloader';
 import FilmModal from './components/FilmModal';
 // import Pagination from './components/Pagination';
 import { MovieContext } from './components/context';
+import SwiperSlider from './components/Slider/Slider';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 					<>
 						<div className="content">
 							<Header searchFunc={searchMovie} />
+							<SwiperSlider style={{ margin: '20px' }} />
 							<Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
 						</div>
 
