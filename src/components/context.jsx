@@ -47,7 +47,7 @@ export const MovieDataContext = ({ children }) => {
 
         const timerOne = setTimeout(() => {
           setTimerSlider(true);
-        }, 2000);
+        }, 5000);
 
         return () => clearTimeout(timerOne);
       } catch (error) {
@@ -75,16 +75,16 @@ export const MovieDataContext = ({ children }) => {
     });
   }, [modalOpen]);
 
-  function getPageMovie(num) {
-    const API_url_popular_page = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${num}`;
+  // function getPageMovie(num) {
+  //   const API_url_popular_page = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${num}`;
 
-    fetch(API_url_popular_page, {
-      headers: {
-        "Content-Type": "application.json",
-        "X-API-KEY": API_Key,
-      },
-    }).then((response) => response.json().then((data) => setMovieArr(data)));
-  }
+  //   fetch(API_url_popular_page, {
+  //     headers: {
+  //       "Content-Type": "application.json",
+  //       "X-API-KEY": API_Key,
+  //     },
+  //   }).then((response) => response.json().then((data) => setMovieArr(data)));
+  // }
 
   function searchMovie(value) {
     const apiSearcUrl = `${API_url_search}${value}`;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import { MovieContext } from "../../components/context";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +12,11 @@ import "swiper/css/scrollbar";
 
 const SwiperSlider = () => {
   const { sliderArray, setTimerSlider } = React.useContext(MovieContext);
+  const refSwiper = useRef();
+
+  React.useEffect(() => {
+    refSwiper?.current.swiper.update();
+  }, []);
 
   console.log(sliderArray, "sliderArray in Slider");
 
@@ -22,10 +27,11 @@ const SwiperSlider = () => {
       modules={[Navigation, Pagination, A11y, Autoplay]}
       spaceBetween={50}
       slidesPerView={1}
-      // autoplay={{
-      //   delay: 2500, // задержка в миллисекундах
-      //   disableOnInteraction: false, // продолжать автопроигрывание после взаимодействия
-      // }}
+      ref={refSwiper}
+      autoplay={{
+        delay: 2500, // задержка в миллисекундах
+        disableOnInteraction: false, // продолжать автопроигрывание после взаимодействия
+      }}
       loop={true}
       centeredSlides={true}
       navigation

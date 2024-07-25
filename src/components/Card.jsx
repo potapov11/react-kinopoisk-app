@@ -1,8 +1,6 @@
 function Card(props) {
   const { film, showModal } = props;
 
-  console.log(showModal);
-
   return (
     <div className="movie" onClick={() => showModal(film.filmId)}>
       <div className="movie__cover-inner">
