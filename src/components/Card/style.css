@@ -14,17 +14,6 @@
 	height: 100%;
 }
 
-.movie__cover--darkened {
-	position: absolute;
-	top: 0;
-	right: 0;
-	background-color: #000;
-	opacity: 0.1;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-}
-
 .movie__cover--darkened:hover {
 	background-color: grey;
 	cursor: pointer;
@@ -75,16 +64,33 @@
 
 .like {
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 15px;
+	top: 15px;
 	display: block;
+	transition: all 0.5s linear;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.5s linear;
 }
 
-/* .movie:hover .like {
-	display: block;
-} */
+.like {
+	width: 20px;
+	height: 20px;
+	background-image: url('../../assets/img/heart.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	transition: all 0.5s linear;
+}
 
-svg:hover {
-	fill: red !important; /* Полная заливка при наведении */
-	/* Убираем обводку */
+.like__svg path {
+	fill: transparent; /* Исходный цвет */
+	transition: all 0.5s ease;
+}
+
+.like:hover .like__svg path {
+	fill: #ffd80e;
 }
