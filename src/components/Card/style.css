@@ -86,11 +86,15 @@
 	transition: all 0.5s linear;
 }
 
-.like__svg path {
+.like__svg {
 	fill: transparent; /* Исходный цвет */
 	transition: all 0.5s ease;
 }
 
-.like:hover .like__svg path {
+.like:hover .like__svg {
+	transform: scale(1.3);
+}
+
+path.checked {
 	fill: #ffd80e;
 }

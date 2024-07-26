@@ -1,0 +1,28 @@
+.favorite {
+	width: 30px;
+	height: 30px;
+	display: flex;
+}
+
+.favorite-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.favorite_count {
+	font-size: large;
+}
+
+.favorite-box .favorite_text {
+	opacity: 0;
+	transition: opacity 0.3s linear;
+}
+
+.favorite-box:hover .favorite_text {
+	opacity: 1;
+}
+
+.favorite-box:hover {
+	cursor: pointer;
+}

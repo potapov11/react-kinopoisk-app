@@ -7,12 +7,7 @@ function Movies(props) {
 		return null; // Можно вернуть заглушку или другое сообщение, если данные еще не загружены
 	}
 
-	// console.log(movieArr);
-	// console.log(movieArr.films);
-
 	const arrFilms = movieArr.films;
-
-	// console.log(arrFilms);
 
 	return (
 		<div style={{ marginTop: '50px' }} className="movies">

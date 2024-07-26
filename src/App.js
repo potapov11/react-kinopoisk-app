@@ -14,8 +14,6 @@ import './App.css';
 function App() {
 	const { movieArr, timerSlider, isLoaded, movieModalInfo, modalOpen, closeModal, searchMovie, showModal, setMovieModalInfo } = useContext(MovieContext);
 
-	console.log(timerSlider, '...timerSlider');
-
 	return (
 		<div className="App">
 			<div className="container">
