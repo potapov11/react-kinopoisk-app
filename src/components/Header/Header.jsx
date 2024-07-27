@@ -1,9 +1,12 @@
+import React from 'react';
+import Favorite from '../../pages/Favorite/Favorite.jsx';
+import { MovieContext } from '../../components/context.jsx';
 import styles from './header.css';
-import Favorite from '../../pages/Favorite/Favorite';
 
 function Header(props) {
-	const { searchFunc } = props;
+	// const { searchMovie } = props;
 	const DEBOUNCE_TIMER = 200;
+	const { searchMovie } = React.useContext(MovieContext);
 
 	const debounce = (callback, timer) => {
 		let timeoutId;
@@ -14,7 +17,7 @@ function Header(props) {
 	};
 
 	const searchDebounceMovie = debounce((e) => {
-		searchFunc(e.target.value);
+		searchMovie(e.target.value);
 	}, DEBOUNCE_TIMER);
 
 	return (

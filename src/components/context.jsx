@@ -54,7 +54,7 @@ export const MovieDataContext = ({ children }) => {
 
 				const timerOne = setTimeout(() => {
 					setTimerSlider(true);
-				}, 5000);
+				}, 3000);
 
 				return () => clearTimeout(timerOne);
 			} catch (error) {
