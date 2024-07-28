@@ -26,6 +26,8 @@ export const MovieDataContext = ({ children }) => {
 
 	function removeFromFavoriteArray(film) {
 		setFavoriteArray((prevState) => prevState.filter((item) => item.filmId !== film.filmId));
+
+		console.log(favoriteArray, '...favoriteArray');
 	}
 
 	useEffect(() => {

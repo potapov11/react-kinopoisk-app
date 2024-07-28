@@ -52,6 +52,23 @@
 	background-color: #1a191f;
 }
 
+.closeCard {
+	position: absolute;
+	top: -25px;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	background-image: url(http://localhost:3000/static/media/close-new.8c0e5c0bf186471cce16.svg);
+	margin-bottom: -2px;
+	cursor: pointer;
+	transition: all 0.3s linear;
+	background-repeat: no-repeat;
+}
+
+.closeCard:hover {
+	transform: scale(1.2);
+}
+
 .movie__average--green {
 	border: 1px solid green;
 }

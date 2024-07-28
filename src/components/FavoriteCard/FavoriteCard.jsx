@@ -1,16 +1,14 @@
 import React from 'react';
 import styles from './style.css';
 import { MovieContext } from '../../components/context';
-import { ClearIcon } from '@mui/material';
 
 function FavoriteCard(props) {
 	const { film } = props;
-	// const { setToFavoriteArray, removeFromFavoriteArray } = React.useContext(MovieContext);
-	// const [isCheckedFavorit, setIsChekedFavorit] = React.useState(false);
+	const { removeFromFavoriteArray } = React.useContext(MovieContext);
 
 	return (
 		<div className="movie">
-			<ClearIcon />
+			<div className="closeCard" onClick={() => removeFromFavoriteArray(film)}></div>
 			<div className="movie__cover-inner">
 				<img className="movie__cover" src={film.posterUrlPreview} alt={film.nameRu} />
 				<div className="movie__cover--darkened"></div>
