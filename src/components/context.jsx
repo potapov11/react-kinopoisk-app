@@ -11,6 +11,7 @@ export const MovieDataContext = ({ children }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [sliderArray, setSliderArray] = useState([]);
 	const [timerSlider, setTimerSlider] = useState(false);
+	const [isHidedForm, setisHidedForm] = useState(false);
 
 	const [localState, setLocalState] = useSessionStorage('promo');
 	const [favoriteArray, setFavoriteArray] = useState([]);
@@ -142,6 +143,8 @@ export const MovieDataContext = ({ children }) => {
 				favoriteArray,
 				setToFavoriteArray,
 				removeFromFavoriteArray,
+				isHidedForm,
+				setisHidedForm,
 			}}>
 			{children}
 		</MovieContext.Provider>

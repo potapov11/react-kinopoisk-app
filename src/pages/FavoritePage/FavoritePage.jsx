@@ -3,9 +3,11 @@ import FavoriteCard from '../../components/FavoriteCard/FavoriteCard.jsx';
 import { MovieContext } from '../../components/context.jsx';
 
 function FavoritePage() {
-	const { favoriteArray } = React.useContext(MovieContext);
+	const { favoriteArray, setisHidedForm } = React.useContext(MovieContext);
 
-	console.log(favoriteArray, '...favoriteArray');
+	React.useEffect(() => {
+		setisHidedForm(false);
+	}, []);
 
 	return (
 		<>
@@ -14,7 +16,6 @@ function FavoritePage() {
 				{favoriteArray.length > 0 &&
 					favoriteArray.map((film) => {
 						return <FavoriteCard key={film.filmId} film={film} />;
-						// return <p>{film.nameRu}</p>;
 					})}
 			</div>
 		</>

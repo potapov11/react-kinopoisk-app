@@ -8,7 +8,13 @@ import FilmModal from '../../components/FilmModal';
 import { MovieContext } from '../../components/context';
 
 function Home() {
-	const { movieArr, timerSlider, showModal, setMovieModalInfo, movieModalInfo, modalOpen, closeModal } = React.useContext(MovieContext);
+	const { movieArr, timerSlider, showModal, setMovieModalInfo, movieModalInfo, modalOpen, closeModal, setisHidedForm, isHidedForm } = React.useContext(MovieContext);
+
+	React.useEffect(() => {
+		setisHidedForm(true);
+
+		console.log(isHidedForm, '...isHidedForm in Home');
+	}, []);
 
 	return (
 		<>

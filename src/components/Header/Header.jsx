@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import styles from './header.css';
 
 function Header(props) {
-	// const { searchMovie } = props;
+	const { searchMovie, isHidedForm } = React.useContext(MovieContext);
+
 	const DEBOUNCE_TIMER = 200;
-	const { searchMovie } = React.useContext(MovieContext);
 
 	const debounce = (callback, timer) => {
 		let timeoutId;
@@ -27,7 +27,7 @@ function Header(props) {
 				<Link to="/" className="header__logo">
 					MovieApp
 				</Link>
-				<form>
+				<form style={{ display: isHidedForm ? 'block' : 'none' }}>
 					<input onChange={(e) => searchDebounceMovie(e)} className="header__search" type="text" placeholder="Найти фильм" />
 					<span className="header__clear"></span>
 				</form>
