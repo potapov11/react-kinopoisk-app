@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import Header from './components/Header/Header';
 import Preloader from './components/Preloader';
+import { Outlet } from 'react-router-dom';
 import { MovieContext } from './components/context';
-import Home from './pages/Home/Home.jsx';
 import './App.css';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 					<>
 						<div className="content">
 							<Header />
-							<Home />
+							<Outlet />
 						</div>
 					</>
 				) : (

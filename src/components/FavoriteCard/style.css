@@ -1,0 +1,63 @@
+.movie {
+	position: relative;
+	width: 240px;
+	margin: 10px;
+}
+
+.movie__cover--inner {
+	position: relative;
+	height: 360px;
+}
+
+.movie__cover {
+	max-width: 100%;
+	height: 100%;
+}
+
+.movie__cover--darkened:hover {
+	background-color: grey;
+	cursor: pointer;
+}
+
+.movie__info {
+	padding: 10px 0;
+}
+
+.movie__title {
+	font-style: 16px;
+	color: #fff;
+}
+
+.movie__category {
+	font-size: 14px;
+	color: #ffd80e;
+}
+
+.movie__category:not(:last-child) {
+	margin-right: 5px;
+}
+
+.movie__average {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 14px;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	color: #fff;
+	background-color: #1a191f;
+}
+
+.movie__average--green {
+	border: 1px solid green;
+}
+.movie__average--orange {
+	border: 1px solid orange;
+}
+.movie__average--red {
+	border: 1px solid red;
+}
