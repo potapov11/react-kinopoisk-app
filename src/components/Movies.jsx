@@ -1,7 +1,15 @@
+import React from 'react';
 import Card from './Card/Card';
 
 function Movies(props) {
 	const { movieArr, showModal, setMovieModalInfo } = props;
+	// const [lsFavorArray, setLsFavoriteArr] = React.useState(JSON.parse(localStorage.getItem('favoriteArray')) || []);
+
+	// console.log(lsFavorArray, '...lsFavorArray...');
+	// React.useEffect(() => {
+	// 	const lsData = JSON.parse(localStorage.getItem('favoriteArray'));
+
+	// });
 
 	if (!movieArr || !movieArr.films) {
 		return null; // Можно вернуть заглушку или другое сообщение, если данные еще не загружены

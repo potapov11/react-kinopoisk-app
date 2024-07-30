@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import useSessionStorage from '../hooks/useSessionStorage.jsx';
 import { API_Key, API_NEWS, API_url_popular, API_url_search, API_Movie_details } from '../constants.js';
+import { json } from 'react-router-dom';
 
 export const MovieContext = createContext();
 
@@ -12,7 +13,6 @@ export const MovieDataContext = ({ children }) => {
 	const [sliderArray, setSliderArray] = useState([]);
 	const [timerSlider, setTimerSlider] = useState(false);
 	const [isHidedForm, setisHidedForm] = useState(false);
-
 	const [localState, setLocalState] = useSessionStorage('promo');
 	const [favoriteArray, setFavoriteArray] = useState([]);
 
@@ -20,15 +20,22 @@ export const MovieDataContext = ({ children }) => {
 		const filmIsInArr = favoriteArray.some((item) => item.filmId === film.filmId);
 
 		if (!filmIsInArr) {
-			setFavoriteArray((prevState) => [...prevState, film]);
-			console.log(favoriteArray);
+			setFavoriteArray((prevState) => {
+				localStorage.setItem('favoriteArray', JSON.stringify([...prevState, film]));
+				return [...prevState, film];
+			});
 		}
 	}
 
 	function removeFromFavoriteArray(film) {
-		setFavoriteArray((prevState) => prevState.filter((item) => item.filmId !== film.filmId));
+		setFavoriteArray((prevState) => {
+			const filteredArr = prevState.filter((item) => item.filmId !== film.filmId);
 
-		console.log(favoriteArray, '...favoriteArray');
+			console.log(filteredArr, '-----filteredArr------');
+
+			localStorage.setItem('favoriteArray', JSON.stringify(filteredArr));
+			return filteredArr;
+		});
 	}
 
 	useEffect(() => {

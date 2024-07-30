@@ -4,6 +4,7 @@ import { MovieContext } from '../context';
 
 function Favorite() {
 	const { favoriteArray } = React.useContext(MovieContext);
+
 	return (
 		<div className="favorite-box">
 			<span className="favorite_count">{favoriteArray.length}</span>

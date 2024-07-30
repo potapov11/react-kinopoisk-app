@@ -12,8 +12,6 @@ function Home() {
 
 	React.useEffect(() => {
 		setisHidedForm(true);
-
-		console.log(isHidedForm, '...isHidedForm in Home');
 	}, []);
 
 	return (

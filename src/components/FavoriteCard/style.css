@@ -58,7 +58,7 @@
 	right: 0;
 	width: 20px;
 	height: 20px;
-	background-image: url(http://localhost:3000/static/media/close-new.8c0e5c0bf186471cce16.svg);
+	background-image: url('../../assets/img/close-new.svg');
 	margin-bottom: -2px;
 	cursor: pointer;
 	transition: all 0.3s linear;
