@@ -1,0 +1,22 @@
+.media-page__box {
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  grid-template-rows: 1fr 2fr 1fr;
+
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.media-page__card {
+  flex-basis: 30%;
+}
+
+.media-page__card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-grid3 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}

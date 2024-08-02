@@ -10,9 +10,9 @@ export const MovieDataContext = ({ children }) => {
   const [movieModalInfo, setMovieModalInfo] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [sliderArray, setSliderArray] = useState([]);
+  const [newsData, setNewsData] = useState([]);
   const [timerSlider, setTimerSlider] = useState(false);
   const [isHidedForm, setisHidedForm] = useState(false);
-
   const [localState, setLocalState] = useSessionStorage("promo");
   const [favoriteArray, setFavoriteArray] = useState(JSON.parse(localStorage.getItem("favoriteArray")));
 
@@ -59,6 +59,8 @@ export const MovieDataContext = ({ children }) => {
         const newsData = await newsResponse.json();
 
         setMovieArr(popularData);
+
+        setNewsData(newsData);
 
         setIsLoaded(true);
         setSliderArray(newsData?.items.slice(0, 5));
@@ -149,6 +151,7 @@ export const MovieDataContext = ({ children }) => {
         setTimerSlider,
         closeModal,
         favoriteArray,
+        newsData,
         setRemoveToFavoriteArray,
         // removeFromFavoriteArray,
         isHidedForm,

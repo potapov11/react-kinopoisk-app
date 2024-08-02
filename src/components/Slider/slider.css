@@ -4,6 +4,10 @@
   height: 500px;
 }
 
+.sample-slider {
+  cursor: pointer;
+}
+
 .swiper .swiper-slide {
   flex-shrink: 0;
   width: 100%;
