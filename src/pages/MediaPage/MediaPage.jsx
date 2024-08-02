@@ -7,22 +7,23 @@ function MediaPage() {
 
   console.log(newsData, "....newsData----....newsData");
 
-  const newsSlicedData = newsData.items.slice(0, 12);
+  const newsSlicedData = newsData.items.slice(0, 13);
 
   return (
     <div className="media-page">
-      <p className="media-page__title">Slider-Page</p>
       <h1 className="media-page__title">Медиа портал - новости, обсуждения, подкасты</h1>
 
       <div className="media-page__box">
         {newsSlicedData.map((newsData, newsDataIndex) => {
           return (
-            <div className={newsDataIndex == 3 || newsDataIndex == 6 ? `media-page__card card card-grid${newsDataIndex}` : "media-page__card card"}>
-              <div>
+            <div className={newsDataIndex == 3 || newsDataIndex == 5 || newsDataIndex == 7 ? `media-page__card card card-grid${newsDataIndex}` : "media-page__card card"}>
+              <div className="card__box-img">
                 <img src={newsData.imageUrl} alt="медиа" />
               </div>
-              <p className="card__title">{newsData.title}</p>
-              <div className="card__desc">{newsData.description}</div>
+              <div className="card__info">
+                <p className="card__title">{newsData.title}</p>
+                <div className="card__desc">{newsData.description}</div>
+              </div>
             </div>
           );
         })}
