@@ -6,11 +6,9 @@ function Pagination(props) {
 
 	const [paginationArray, setPaginationArray] = useState([]);
 	const [currentPageCount, setCurrentPageCount] = useState(1);
-	// const [styleLastItem, setStyleLastItem] = useState(false);
 
 	function setNewStyle(index) {
 		setCurrentPageCount(index);
-		// alert(num);
 	}
 
 	useEffect(() => {

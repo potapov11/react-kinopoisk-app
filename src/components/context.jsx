@@ -14,30 +14,6 @@ export const MovieDataContext = ({ children }) => {
 	const [timerSlider, setTimerSlider] = useState(false);
 	const [isHidedForm, setisHidedForm] = useState(false);
 	const [localState, setLocalState] = useSessionStorage('promo');
-	const [favoriteArray, setFavoriteArray] = useState(JSON.parse(localStorage.getItem('favoriteArray')) || []);
-
-	function setRemoveToFavoriteArray(film) {
-		const filmIsInArr = favoriteArray.some((item) => item.filmId === film.filmId);
-
-		film.isLiked = !film.isLiked;
-		if (!filmIsInArr) {
-			setFavoriteArray((prevState) => {
-				localStorage.setItem('favoriteArray', JSON.stringify([...prevState, film]));
-				return [...prevState, film];
-			});
-		} else {
-			setFavoriteArray((prevState) => {
-				const removedArr = prevState.filter((item) => item.filmId !== film.filmId);
-				localStorage.setItem('favoriteArray', JSON.stringify(removedArr));
-				return removedArr;
-			});
-		}
-	}
-
-	//!TODO REMOVE
-	useEffect(() => {
-		console.log(favoriteArray, 'favoriteArra in useEf');
-	}, [favoriteArray]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -150,9 +126,9 @@ export const MovieDataContext = ({ children }) => {
 				timerSlider,
 				setTimerSlider,
 				closeModal,
-				favoriteArray,
+				// favoriteArray,
 				newsData,
-				setRemoveToFavoriteArray,
+				// setRemoveToFavoriteArray,
 				// removeFromFavoriteArray,
 				isHidedForm,
 				setisHidedForm,
