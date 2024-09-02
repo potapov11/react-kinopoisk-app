@@ -107,7 +107,7 @@ export const MovieDataContext = ({ children }) => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data, 'dataSearch');
-				setMovieArr(data);
+				setMovieArr(data.films);
 			});
 	}
 
