@@ -25,6 +25,13 @@ export const MovieDataContext = ({ children }) => {
 					},
 				});
 				const popularData = await popularResponse.json();
+				let { films } = popularData;
+
+				let filmsWithLikes = films.map((filmItem) => {
+					return { ...filmItem, isLiked: false };
+				});
+
+				console.log(films, '...updatedFilms...');
 
 				const newsResponse = await fetch(API_NEWS, {
 					headers: {
@@ -34,7 +41,7 @@ export const MovieDataContext = ({ children }) => {
 				});
 				const newsData = await newsResponse.json();
 
-				setMovieArr(popularData);
+				setMovieArr(filmsWithLikes);
 
 				setNewsData(newsData);
 
@@ -71,6 +78,23 @@ export const MovieDataContext = ({ children }) => {
 		});
 	}, [modalOpen]);
 
+	function setLike(id) {
+		const likedArray = movieArr.map((item) => {
+			if (item.filmId == id) {
+				return { ...item, isLiked: !item.isLiked };
+			} else {
+				return item;
+			}
+		});
+		setMovieArr(likedArray);
+
+		setUpdateLS(likedArray);
+	}
+
+	function setUpdateLS(likedArray) {
+		localStorage.setItem('favoriteArray', JSON.stringify(likedArray));
+	}
+
 	function searchMovie(value) {
 		const apiSearcUrl = `${API_url_search}${value}`;
 
@@ -82,6 +106,7 @@ export const MovieDataContext = ({ children }) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data, 'dataSearch');
 				setMovieArr(data);
 			});
 	}
@@ -126,6 +151,7 @@ export const MovieDataContext = ({ children }) => {
 				timerSlider,
 				setTimerSlider,
 				closeModal,
+				setLike,
 				// favoriteArray,
 				newsData,
 				// setRemoveToFavoriteArray,

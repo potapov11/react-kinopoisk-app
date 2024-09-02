@@ -4,15 +4,14 @@ import { MovieContext } from '../../components/context';
 
 function Card(props) {
 	const { film, showModal } = props;
-	const { setRemoveToFavoriteArray } = React.useContext(MovieContext);
+	const { setLike } = React.useContext(MovieContext);
 	// const [isCheckedFavorit, setIsChekedFavorit] = React.useState(false);
 
 	// setRemoveToFavoriteArray(film);
 
 	return (
 		<div className="movie" onClick={(e) => showModal(e, film.filmId)}>
-			{/* <div className="like" onClick={() => setRemoveToFavoriteArray(film)}> */}
-			<div className="like">
+			<div className="like" onClick={() => setLike(film.filmId)}>
 				<svg className="like__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g id="SVGRepo_bgCarrier" strokeWidth="0" />
 					<g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />

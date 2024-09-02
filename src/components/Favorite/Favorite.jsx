@@ -3,11 +3,15 @@ import styles from './favorite.css';
 import { MovieContext } from '../context';
 
 function Favorite() {
-	// const { favoriteArray } = React.useContext(MovieContext);
+	const { movieArr } = React.useContext(MovieContext);
+
+	console.log(movieArr, '...movieArr in favor');
+
+	const likedArray = movieArr.filter((item) => item.isLiked);
 
 	return (
 		<div className="favorite-box">
-			<span className="favorite_count">Длина</span>
+			<span className="favorite_count">{likedArray.length}</span>
 			<div className="favorite">
 				<svg viewBox="0 0 24 24" fill="#ffd80e" xmlns="http://www.w3.org/2000/svg">
 					<g id="SVGRepo_bgCarrier" strokeWidth="0" />

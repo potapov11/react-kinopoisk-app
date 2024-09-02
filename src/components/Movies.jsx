@@ -10,8 +10,8 @@ function Movies(props) {
 
 	return (
 		<div style={{ marginTop: '50px' }} className="movies">
-			{movieArr.films.length > 0 &&
-				movieArr.films.map((film) => {
+			{movieArr.length > 0 &&
+				movieArr.map((film) => {
 					return <Card key={film.filmId} film={film} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />;
 				})}
 		</div>
