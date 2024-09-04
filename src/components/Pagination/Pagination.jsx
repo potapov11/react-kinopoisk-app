@@ -4,7 +4,7 @@ import { API_Key } from '../../constants';
 import { MovieContext } from '../../components/context';
 
 function PaginationBlock() {
-	const { movieArr, setMovieArr } = React.useContext(MovieContext);
+	const { movieArrInfo, setMovieArr } = React.useContext(MovieContext);
 
 	const handlePageChange = (event, value) => {
 		getPageMovie(value);
@@ -18,12 +18,12 @@ function PaginationBlock() {
 				'Content-Type': 'application.json',
 				'X-API-KEY': API_Key,
 			},
-		}).then((response) => response.json().then((data) => setMovieArr(data)));
+		}).then((response) => response.json().then((data) => setMovieArr(data.films)));
 	}
 
 	return (
 		<>
-			<Pagination count={movieArr.pagesCount} onChange={handlePageChange} variant="outlined" shape="rounded" />
+			<Pagination count={movieArrInfo.pagesCount} onChange={handlePageChange} variant="outlined" shape="rounded" />
 		</>
 	);
 }

@@ -6,6 +6,7 @@ export const MovieContext = createContext();
 
 export const MovieDataContext = ({ children }) => {
 	const [movieArr, setMovieArr] = useState([]);
+	const [movieArrInfo, setMovieArrInfo] = useState('');
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [movieModalInfo, setMovieModalInfo] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +26,9 @@ export const MovieDataContext = ({ children }) => {
 					},
 				});
 				const popularData = await popularResponse.json();
+
+				setMovieArrInfo(popularData);
+
 				let { films } = popularData;
 
 				let filmsWithLikes = films.map((filmItem) => {
@@ -81,6 +85,7 @@ export const MovieDataContext = ({ children }) => {
 	function setLike(id) {
 		const likedArray = movieArr.map((item) => {
 			if (item.filmId == id) {
+				console.log(item, 'item');
 				return { ...item, isLiked: !item.isLiked };
 			} else {
 				return item;
@@ -88,11 +93,22 @@ export const MovieDataContext = ({ children }) => {
 		});
 		setMovieArr(likedArray);
 
-		setUpdateLS(likedArray);
+		updateLS(id);
 	}
 
-	function setUpdateLS(likedArray) {
-		localStorage.setItem('favoriteArray', JSON.stringify(likedArray));
+	function updateLS(id) {
+		let arrLS = localStorage.getItem('favoriteArray') !== null ? JSON.parse(localStorage.getItem('favoriteArray')) : [];
+
+		if (arrLS) {
+			let idExistInArr = arrLS.some((item) => item.id == id);
+			if (!idExistInArr) {
+				arrLS = [...arrLS, { id }];
+			} else {
+				arrLS = arrLS.filter((item) => item.id !== id);
+			}
+		}
+
+		localStorage.setItem('favoriteArray', JSON.stringify(arrLS));
 	}
 
 	function searchMovie(value) {
@@ -154,6 +170,7 @@ export const MovieDataContext = ({ children }) => {
 				setLike,
 				// favoriteArray,
 				newsData,
+				movieArrInfo,
 				// setRemoveToFavoriteArray,
 				// removeFromFavoriteArray,
 				isHidedForm,

@@ -4,12 +4,15 @@ import { MovieContext } from '../context';
 
 function Favorite() {
 	const { movieArr } = React.useContext(MovieContext);
+	const [favoriteArr, setFavoriteArr] = useState(localStorage.getItem('favoriteArray') !== null ? JSON.parse(localStorage.getItem('favoriteArray')) : []);
 
-	const likedArray = movieArr.filter((item) => item.isLiked);
+	useEffect(() => {
+		setFavoriteArr(localStorage.getItem('favoriteArray') !== null ? JSON.parse(localStorage.getItem('favoriteArray')) : []);
+	}, [movieArr]);
 
 	return (
 		<div className="favorite-box">
-			<span className="favorite_count">{likedArray.length}</span>
+			<span className="favorite_count">{favoriteArr.length}</span>
 			<div className="favorite">
 				<svg viewBox="0 0 24 24" fill="#ffd80e" xmlns="http://www.w3.org/2000/svg">
 					<g id="SVGRepo_bgCarrier" strokeWidth="0" />

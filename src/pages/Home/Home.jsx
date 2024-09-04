@@ -10,8 +10,6 @@ import { MovieContext } from '../../components/context';
 function Home() {
 	const { movieArr, timerSlider, showModal, setMovieModalInfo, movieModalInfo, modalOpen, closeModal, setisHidedForm, isHidedForm } = React.useContext(MovieContext);
 
-	console.log(movieArr, '..movieArr...');
-
 	React.useEffect(() => {
 		setisHidedForm(true);
 		console.log('компонент Home загрузился');
