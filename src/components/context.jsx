@@ -12,6 +12,7 @@ export const MovieDataContext = ({ children }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [sliderArray, setSliderArray] = useState([]);
   const [newsData, setNewsData] = useState([]);
+  const [actualLS, setActualLS] = useState([]);
   const [timerSlider, setTimerSlider] = useState(false);
   const [isHidedForm, setisHidedForm] = useState(false);
   const [localState, setLocalState] = useSessionStorage("promo");
@@ -96,6 +97,11 @@ export const MovieDataContext = ({ children }) => {
     updateLS(id);
   }
 
+  function checkActualLS() {
+    const arrLS = localStorage.getItem("favoriteArray") !== null ? JSON.parse(localStorage.getItem("favoriteArray")) : [];
+    setActualLS(arrLS);
+  }
+
   function updateLS(id) {
     let arrLS = localStorage.getItem("favoriteArray") !== null ? JSON.parse(localStorage.getItem("favoriteArray")) : [];
 
@@ -104,7 +110,6 @@ export const MovieDataContext = ({ children }) => {
       if (!idExistInArr) {
         const targetFilm = movieArr.find((item) => item.filmId == id);
         console.log(targetFilm, "targetFilm");
-        // targetFilm.isLiked = true;
         arrLS = [...arrLS, targetFilm];
       } else {
         arrLS = arrLS.filter((item) => item.filmId !== id);
@@ -171,6 +176,9 @@ export const MovieDataContext = ({ children }) => {
         setTimerSlider,
         closeModal,
         setLike,
+        updateLS,
+        checkActualLS,
+        actualLS,
         // favoriteArray,
         newsData,
         movieArrInfo,

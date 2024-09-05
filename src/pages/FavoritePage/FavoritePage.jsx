@@ -7,12 +7,16 @@ function FavoritePage() {
   const { favoriteArray, setisHidedForm } = React.useContext(MovieContext);
   const [movieArray, setMovieArray] = useState([]);
 
-  useEffect(() => {
+  function checkLS() {
     setisHidedForm(false);
     const arrLS = localStorage.getItem("favoriteArray") !== null ? JSON.parse(localStorage.getItem("favoriteArray")) : [];
     setMovieArray(arrLS);
 
     console.log(movieArray, "movieArray in fav");
+  }
+
+  useEffect(() => {
+    checkLS();
   }, []);
 
   return (
@@ -21,7 +25,7 @@ function FavoritePage() {
       <div style={{ marginTop: "50px" }} className="movies">
         {movieArray.length > 0 &&
           movieArray.map((film) => {
-            return <FavoriteCard key={film.filmId} film={film} />;
+            return <FavoriteCard key={film.filmId} film={film} checkLS={checkLS} />;
           })}
       </div>
     </>
