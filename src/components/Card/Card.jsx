@@ -6,11 +6,6 @@ function Card(props) {
   const { film, showModal } = props;
   const { setLike } = React.useContext(MovieContext);
 
-  console.log(film, "film in card");
-  // const [isCheckedFavorit, setIsChekedFavorit] = React.useState(false);
-
-  // setRemoveToFavoriteArray(film);
-
   return (
     <div className="movie" onClick={(e) => showModal(e, film.filmId)}>
       <div className="like" onClick={() => setLike(film.filmId)}>
