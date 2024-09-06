@@ -12,7 +12,18 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const SwiperSlider = () => {
-  const { sliderArray, setTimerSlider } = React.useContext(MovieContext);
+  let { sliderArray, setTimerSlider } = React.useContext(MovieContext);
+
+  console.log(sliderArray, "...sliderArray...");
+
+  sliderArray = sliderArray.map((item) => {
+    if (item.imageUrl.endsWith("orig")) {
+      item.imageUrl = item.imageUrl.replace("orig", "960x540");
+    }
+
+    return item;
+  });
+
   const refSwiper = useRef();
 
   React.useEffect(() => {
@@ -27,10 +38,10 @@ const SwiperSlider = () => {
       spaceBetween={50}
       slidesPerView={1}
       ref={refSwiper}
-      autoplay={{
-        delay: 2500, // задержка в миллисекундах
-        disableOnInteraction: false, // продолжать автопроигрывание после взаимодействия
-      }}
+      // autoplay={{
+      //   delay: 2500, // задержка в миллисекундах
+      //   disableOnInteraction: false, // продолжать автопроигрывание после взаимодействия
+      // }}
       loop={true}
       centeredSlides={true}
       navigation

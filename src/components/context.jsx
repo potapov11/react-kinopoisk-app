@@ -51,11 +51,12 @@ export const MovieDataContext = ({ children }) => {
         setNewsData(newsData);
 
         setIsLoaded(true);
+
         setSliderArray(newsData?.items.slice(0, 5));
 
         const timerOne = setTimeout(() => {
           setTimerSlider(true);
-        }, 3000);
+        }, 2000);
 
         return () => clearTimeout(timerOne);
       } catch (error) {
