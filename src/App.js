@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Header from "./components/Header/Header";
 import Preloader from "./components/Preloader";
 import { Outlet } from "react-router-dom";
-import { MovieContext } from "./components/context";
+import { MovieContext } from "./contecsts/context";
 import "./App.css";
 
 function App() {

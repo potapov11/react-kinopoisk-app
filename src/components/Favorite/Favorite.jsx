@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./favorite.css";
-import { MovieContext } from "../context";
+import { MovieContext } from "../../contecsts/context";
 
 function Favorite() {
   const { movieArr, actualLS } = React.useContext(MovieContext);

@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieContext } from "../../components/context";
+import { MovieContext } from "../../contecsts/context";
 import style from "./style.css";
 
 function MediaPage() {

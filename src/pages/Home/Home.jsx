@@ -5,15 +5,16 @@ import PaginationBlock from "../../components/Pagination/Pagination";
 import Movies from "../../components/Movies";
 import FilmModal from "../../components/FilmModal";
 
-import { MovieContext } from "../../components/context";
+import { MovieContext } from "../../contecsts/context";
+import { ModalContext } from "../../contecsts/contextUI";
 
 function Home() {
-  const { movieArr, timerSlider, showModal, setMovieModalInfo, movieModalInfo, modalOpen, closeModal, setisHidedForm, checkActualLS } = React.useContext(MovieContext);
+  const { movieArr, timerSlider, setMovieModalInfo, checkActualLS } = React.useContext(MovieContext);
+  const { showModal, modalOpen, closeModal, movieModalInfo, setisHidedForm } = React.useContext(ModalContext);
 
   React.useEffect(() => {
     setisHidedForm(true);
     checkActualLS();
-    console.log("компонент Home загрузился");
   }, []);
 
   return (

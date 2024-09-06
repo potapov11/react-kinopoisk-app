@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import FavoriteCard from "../../components/FavoriteCard/FavoriteCard.jsx";
-import { MovieContext } from "../../components/context.jsx";
+import { MovieContext } from "../../contecsts/context.jsx";
+import { ModalContext } from "../../contecsts/contextUI.jsx";
 
 function FavoritePage() {
   const { favoriteArray, setisHidedForm } = React.useContext(MovieContext);

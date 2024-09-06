@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MovieContext } from "./context";
+import { MovieContext } from "../contecsts/context";
 import { useContext } from "react";
 
 function Preloader() {

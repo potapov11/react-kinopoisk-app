@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.css";
-import { MovieContext } from "../../components/context";
+import { MovieContext } from "../../contecsts/context";
 
 function FavoriteCard(props) {
   const { film, checkLS } = props;

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.css";
-import { MovieContext } from "../../components/context";
+import { MovieContext } from "../../contecsts/context";
 
 function Card(props) {
   const { film, showModal } = props;

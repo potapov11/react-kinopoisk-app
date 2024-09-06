@@ -7,7 +7,8 @@ import MediaPage from "./pages/MediaPage/MediaPage";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { MovieDataContext } from "./components/context";
+import { MovieModal } from "./contecsts/contextUI";
+import { MovieDataContext } from "./contecsts/context";
 
 const router = createBrowserRouter([
   {
@@ -30,13 +31,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-console.log(router, "....router");
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <MovieDataContext>
-      <RouterProvider router={router} />
+      <MovieModal>
+        <RouterProvider router={router} />
+      </MovieModal>
     </MovieDataContext>
   </React.StrictMode>
 );
