@@ -2,6 +2,7 @@ import React from "react";
 import { Pagination } from "@mui/material";
 import { API_Key } from "../../constants";
 import { MovieContext } from "../../contecsts/context";
+import pagination from "./pagination.css";
 
 function PaginationBlock() {
   const { movieArrInfo, setMovieArr } = React.useContext(MovieContext);
@@ -23,7 +24,7 @@ function PaginationBlock() {
 
   return (
     <>
-      <Pagination count={movieArrInfo.pagesCount} onChange={handlePageChange} variant="outlined" shape="rounded" />
+      <Pagination count={movieArrInfo.pagesCount} onChange={handlePageChange} variant="outlined" shape="rounded" className="background-lite" />
     </>
   );
 }
