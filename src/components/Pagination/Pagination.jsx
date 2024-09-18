@@ -7,9 +7,7 @@ import "./pagination.css"; // Импортируем CSS
 function PaginationBlock() {
   const { movieArrInfo, setMovieArr } = React.useContext(MovieContext);
   const [currentPage, setCurrentPage] = useState(1);
-
   const API_url_popular_page = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${currentPage}`;
-
   const [data, error] = useFetch(API_url_popular_page);
 
   useEffect(() => {

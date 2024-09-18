@@ -8,13 +8,10 @@ export const MovieDataContext = ({ children }) => {
   const [movieArr, setMovieArr] = useState([]);
   const [movieArrInfo, setMovieArrInfo] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [movieModalInfo, setMovieModalInfo] = useState([]);
-  // const [modalOpen, setModalOpen] = useState(false);
   const [sliderArray, setSliderArray] = useState([]);
   const [newsData, setNewsData] = useState([]);
   const [actualLS, setActualLS] = useState([]);
   const [timerSlider, setTimerSlider] = useState(false);
-  // const [isHidedForm, setisHidedForm] = useState(false);
   const [localState, setLocalState] = useSessionStorage("promo");
 
   useEffect(() => {
