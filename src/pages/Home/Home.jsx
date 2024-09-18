@@ -4,7 +4,8 @@ import SliderPreloader from '../../components/SliderPreloader/SliderPreloader';
 import PaginationBlock from '../../components/Pagination/Pagination';
 import Movies from '../../components/Movies';
 import FilmModal from '../../components/FilmModal';
-import Form from '../../components/Form/Form';
+import FormModal from '../../components/FormModal/FormModal';
+// import Form from '../../components/Form/Form';
 
 import { MovieContext } from '../../contecsts/context';
 import { ModalContext } from '../../contecsts/contextUI';
@@ -31,7 +32,8 @@ function Home() {
 			</div>
 			<Movies movieArr={movieArr} showModal={showModal} setMovieModalInfo={setMovieModalInfo} />
 			<PaginationBlock />
-			<Form />
+			<FormModal />
+			{/* <Form /> */}
 		</>
 	);
 }
