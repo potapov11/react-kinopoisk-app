@@ -5,7 +5,7 @@ function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: "onChange", // Валидация при каждом изменении
   });
@@ -33,10 +33,23 @@ function Form() {
         {errors.user_name && <p className="form__error">{errors.user_name.message}</p>}
 
         <label htmlFor="mail">Email:</label>
-        <input type="email" id="mail" {...register("user_email", { required: "Это поле обязательно" })} />
+        <input
+          type="email"
+          id="mail"
+          {...register("user_email", {
+            required: "Это поле обязательно",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Введите корректный email",
+            },
+          })}
+        />
         {errors.user_email && <p className="form__error">{errors.user_email.message}</p>}
 
-        <button type="submit">Отправить</button>
+        <button type="submit">
+          <button type="submit" disabled={!isValid} />
+          Отправить
+        </button>
       </form>
     </>
   );
