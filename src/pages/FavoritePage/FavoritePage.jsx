@@ -2,18 +2,21 @@ import React from "react";
 import { useState, useEffect } from "react";
 import FavoriteCard from "../../components/FavoriteCard/FavoriteCard.jsx";
 import { MovieContext } from "../../contecsts/context.jsx";
-import { ModalContext } from "../../contecsts/contextUI.jsx";
+// import { ModalContext } from "../../contecsts/contextUI.jsx";
 
 function FavoritePage() {
   const { favoriteArray, setisHidedForm } = React.useContext(MovieContext);
+
+  console.log(setisHidedForm);
+
   const [movieArray, setMovieArray] = useState([]);
 
   function checkLS() {
-    setisHidedForm(false);
+    if (setisHidedForm) {
+      setisHidedForm(false);
+    }
     const arrLS = localStorage.getItem("favoriteArray") !== null ? JSON.parse(localStorage.getItem("favoriteArray")) : [];
     setMovieArray(arrLS);
-
-    console.log(movieArray, "movieArray in fav");
   }
 
   useEffect(() => {
